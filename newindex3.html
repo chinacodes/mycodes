@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
+<title>乐积分新首页</title>
+<link rel="stylesheet" href="../css/swiper-3.3.1.min.css">
+<link rel="stylesheet" href="../css/index2.css"/>
+<script type="text/javascript" src="../js/libs/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../js/libs/vue.js"></script>
+<script type="text/javascript" src="../js/script/initjs.js"></script>
+<script type="text/javascript" src="../js/script/lejf-h5-commons3.js"></script>
+<script type="text/javascript" src="../js/libs/sha.js"></script>
+<script type="text/javascript" src="../js/libs/swiper-3.3.1.min.js"></script>
+<script type="text/javascript" src="../js/script/newindex2.js"></script>
+</head>
+
+<body>
+<div class="main">
+    <div class="banner">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="../newimages/banner1.png" /></div>
+                <div class="swiper-slide"><img src="../newimages/banner2.png" /></div>
+                <div class="swiper-slide"><img src="../newimages/banner3.png" /></div>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+        </div>
+        <script type="text/javascript">
+            var swiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                //nextButton: '.swiper-button-next',
+                //prevButton: '.swiper-button-prev',
+                slidesPerView: 1,
+                //paginationClickable: true,
+                spaceBetween: 30,
+                loop: true,
+                autoplay:3000,
+                autoplayDisableOnInteraction:false
+            });
+        </script>
+
+    </div>
+
+    <div class="cnt_classify">
+        <div class="classify_item">
+            <a href="buy/keClassifyList.html"> <div class="lep_icon"><img src="../newimages/lep_icon.png" /> </div></a>
+            <div class="lep_info">学习得积分</div>
+        </div>
+        <div class="classify_item">
+            <a href="appshare/appshare.html">
+            <div class="item_RT">
+                <div class="item_RTl"><span>邀请好友</span><br><span class="de_jf">可获得300积分</span></div>
+                <div class="item_RTl"><img src="../newimages/yao_icon.png"/> </div>
+            </div>
+            </a>
+            <div class="item_RT">
+                <div class="item_RTl"><span>学免费课程</span><br><span class="de_jf">拿积分</span></div>
+                <div class="item_RTl"><img src="../newimages/ke_icon.png"/> </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="gameBox">
+        <div class="game_tit">交易游戏</div>
+        <div class="game_item_box">
+            <div class="game_item">
+                <div class="game_item_pic"><img src="../newimages/game_k.png" /> </div>
+                <div class="game_item_text">K线练习</div>
+            </div>
+            <a href="oneduobaoh5/oneindex.html">
+            <div class="game_item">
+                <div class="game_item_pic"><img src="../newimages/game_d.png" /> </div>
+                <div class="game_item_text">夺宝练习</div>
+            </div>
+            </a>
+            <div class="game_item">
+                <div class="game_item_pic"><img src="../newimages/game_m.png" /> </div>
+                <div class="game_item_text">模拟练习</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="products_box">
+        <div class="products_tit">抽奖区</div>
+        <div class="products_list clear" id="products_list">
+            <a v-bind:href=" 'shoppingMall/mallInfoCntIndex.html?infocnt='+todo.id" v-for="todo in items">
+                <div class="pro_item">
+                    <div class="pro_pic"><img v-bind:src="todo.image" /></div>
+                    <div class="pro_info">
+                        <div class="pro_tit">{{todo.name}}</div>
+                        <div class="pro_jf">积分：<span>"{{todo.price/10000}}"</span>万</div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $.appClient.init({
+            serviceBaseUrl: servicebaseurl
+        })
+        var indexGoodsList='';
+        $.appClient.callService('QueryHome', {}, function (data) {
+            if (data.resultCode == 0) {
+                indexGoodsList=data.goodsList;
+                var vm=new Vue({
+                    el:"#products_list",
+                    data:{
+                        items:data.goodsList
+                    }
+
+                })
+
+            }
+        })
+
+
+
+    </script>
+
+    <div class="mall_footer">
+        <ul>
+            <a href="newindex.html">
+                <li class="btn_index"><img src="../images/footer_nav_index_1.png" /></li>
+            </a>
+            <a href="shoppingMall/shoppingMall.html">
+                <li class="btn_mall"><img src="../images/footer_nav_mall_0.png" /></li>
+            </a>
+            <a href="shoppingMall/mallInfoList.html">
+                <li class="btn_pai"><img src="../images/footer_nav_info_0.png" /></li>
+            </a>
+            <a href="my.html">
+                <li class="btn_my"><img src="../images/footer_nav_my_0.png" /></li>
+            </a>
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>
